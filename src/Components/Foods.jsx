@@ -1,33 +1,7 @@
 import React, { Component } from "react";
-import { getFoods } from "../Services/fakeFoodService";
 import "@fortawesome/fontawesome-free/css/all.css";
-import Favorite from "./Favorite";
 
 class Foods extends Component {
-  state = {
-    foods: getFoods(),
-    // favorite: <i className="fa-solid fa-star" />,
-    // noneFavorite: <i className="fa-regular fa-star" />,
-  };
-
-  handleDelete = (id) => {
-    const updatedArray = this.state.foods.filter((item) => item._id !== id);
-    this.setState({ foods: updatedArray });
-  };
-
-  foodInCart() {
-    const inCart = this.state.foods.length;
-    return inCart === 0
-      ? "No food in the database"
-      : `Showing ${this.state.foods.length} foods in the database`;
-  }
-  addFavorite = () => {
-    const starStyle = this.state.noneFavorite
-      ? this.state.favorite
-      : this.state.noneFavorite;
-    this.setState(starStyle);
-  };
-
   render() {
     return (
       <div style={{ cursor: "pointer" }} className="container">
