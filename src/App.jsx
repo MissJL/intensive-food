@@ -4,11 +4,13 @@ import { getFoods } from "../src/Services/fakeFoodService";
 import Pagination from "./Components/Pagination";
 import ListGroup from "./Components/ListGroup";
 import { getPages } from "./Services/Pages";
+import { getCategories } from "./Services/fakeCategoryServices";
 
 class App extends Component {
   state = {
     foods: getFoods(),
     pages: getPages(),
+    categories: getCategories(),
   };
 
   handleActive = (nr) => {
@@ -29,7 +31,7 @@ class App extends Component {
       <div className="container mt-4" style={{ cursor: "pointer" }}>
         <div className="row">
           <span className="col-2">
-            <ListGroup />
+            <ListGroup categories={this.state.categories} />
           </span>
           <div className="col">
             <Foods foods={this.state.foods} onDelete={this.handleDelete} />
