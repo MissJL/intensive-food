@@ -4,15 +4,15 @@ import "@fortawesome/fontawesome-free/css/all.css";
 class Favorite extends Component {
   state = {
     favorite: "fa-regular fa-star",
+    noneFavorite: "fa-solid fa-star",
   };
 
-  //   addFavorite() {
-  //     const favorite = this.state.favorite;
-  //     favorite === "fa-regular fa-star"
-  //       ? "fa-solid fa-star"
-  //       : "fa-regular fa-star";
-  //     this.setState({ favorite });
-  //   }
+  addFavorite = () => {
+    const starStyle = this.state.noneFavorite
+      ? this.state.favorite
+      : this.state.noneFavorite;
+    this.setState(starStyle);
+  };
   render() {
     return;
     // <this.addFavorite />;

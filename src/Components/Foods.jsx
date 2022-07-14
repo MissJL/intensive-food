@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 class Foods extends Component {
+  foodInCart() {
+    const inCart = this.props.foods.length;
+    return inCart === 0
+      ? "No food in the database"
+      : `Showing ${this.props.foods.length} foods in the database`;
+  }
+
   render() {
     return (
-      <div style={{ cursor: "pointer" }} className="container">
-        <span>{this.foodInCart()}</span>
-        {this.state.foods.length > 0 && (
+      <>
+        <span>{this.foodInCart(this.props.foods)}</span>
+        {this.props.foods.length > 0 && (
           <table className="table">
             <thead>
               <tr>
@@ -19,21 +26,18 @@ class Foods extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.foods.map((food) => (
+              {this.props.foods.map((food) => (
                 <tr key={food._id}>
                   <td>{food.name}</td>
                   <td>{food.category.name}</td>
                   <td>{food.numberInStock}</td>
                   <td>{food.price}</td>
                   <td>
-                    <i
-                      className="fa-regular fa-star"
-                      onClick={() => this.addFavorite}
-                    ></i>
+                    <i className="fa-regular fa-star"></i>
                   </td>
                   <td>
                     <button
-                      onClick={() => this.handleDelete(food._id)}
+                      onClick={() => this.props.onDelete(food._id)}
                       type="button"
                       className="btn btn-danger"
                     >
@@ -45,7 +49,7 @@ class Foods extends Component {
             </tbody>
           </table>
         )}
-      </div>
+      </>
     );
   }
 }
