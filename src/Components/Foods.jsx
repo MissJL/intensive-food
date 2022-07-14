@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "@fortawesome/fontawesome-free/css/all.css";
+import Favorite from "./Favorite";
 
 class Foods extends Component {
   foodInCart() {
@@ -33,7 +33,8 @@ class Foods extends Component {
                   <td>{food.numberInStock}</td>
                   <td>{food.price}</td>
                   <td>
-                    <i className="fa-regular fa-star"></i>
+                    {" "}
+                    <Favorite getActive={this.props.getActive} />
                   </td>
                   <td>
                     <button

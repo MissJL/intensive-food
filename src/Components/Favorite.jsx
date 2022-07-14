@@ -3,19 +3,21 @@ import "@fortawesome/fontawesome-free/css/all.css";
 
 class Favorite extends Component {
   state = {
-    favorite: "fa-regular fa-star",
-    noneFavorite: "fa-solid fa-star",
+    favorite: true,
   };
-
-  addFavorite = () => {
-    const starStyle = this.state.noneFavorite
-      ? this.state.favorite
-      : this.state.noneFavorite;
-    this.setState(starStyle);
+  getFavorite = () => {
+    const star = !this.state.favorite;
+    this.setState({ favorite: star });
   };
   render() {
-    return;
-    // <this.addFavorite />;
+    return (
+      <i
+        className={
+          this.state.favorite ? "fa-regular fa-star" : "fa-solid fa-star"
+        }
+        onClick={() => this.getFavorite()}
+      />
+    );
   }
 }
 

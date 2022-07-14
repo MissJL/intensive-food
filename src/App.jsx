@@ -7,6 +7,7 @@ import ListGroup from "./Components/ListGroup";
 class App extends Component {
   state = {
     foods: getFoods(),
+    pages: [1, 2, 3, 4, 5],
   };
 
   handleDelete = (id) => {
@@ -22,8 +23,13 @@ class App extends Component {
             <ListGroup />
           </span>
           <div className="col">
-            <Foods foods={this.state.foods} onDelete={this.handleDelete} />
-            <Pagination />
+            <Foods
+              foods={this.state.foods}
+              onDelete={this.handleDelete}
+              onPage={this.handlePage}
+              onActive={this.getActive}
+            />
+            <Pagination pages={this.state.pages} />
           </div>
         </div>
       </div>

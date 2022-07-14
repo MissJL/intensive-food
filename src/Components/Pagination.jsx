@@ -2,38 +2,29 @@ import React, { Component } from "react";
 
 class Pagination extends Component {
   state = {
-    page: "page-item active",
+    active: false,
   };
-  //funkar inte
-  turnActive() {
-    const page = "page-item";
-    page += this.state.page ? "page-item" : "page-item active";
-    return page;
-  }
+
+  getActive = () => {
+    const page = !this.state.active;
+    this.setState({ active: page });
+  };
 
   render() {
     return (
-      <>
-        <nav>
-          <ul className="pagination pagination-sm">
-            <li className="page-item">
-              <span className="page-link" href="#" onClick={this.turnActive}>
-                1
-              </span>
+      <nav>
+        <ul className="pagination pagination-sm">
+          {this.props.pages.map((page) => (
+            <li
+              key={page}
+              className={this.state.active ? "page-item active" : "page-item"}
+              onClick={() => this.getActive()}
+            >
+              <a className="page-link">{page}</a>
             </li>
-            <li className="page-item">
-              <a className="page-link" href="#" onClick={this.turnActive}>
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#" onClick={this.turnActive}>
-                3
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </>
+          ))}
+        </ul>
+      </nav>
     );
   }
 }
