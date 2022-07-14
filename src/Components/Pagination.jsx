@@ -12,19 +12,24 @@ class Pagination extends Component {
 
   render() {
     return (
-      <nav>
-        <ul className="pagination pagination-sm">
-          {this.props.pages.map((page) => (
+      <>
+        <nav>
+          <ul className="pagination pagination-sm">
             <li
-              key={page}
               className={this.state.active ? "page-item active" : "page-item"}
               onClick={() => this.getActive()}
             >
-              <a className="page-link">{page}</a>
+              <a className="page-link">1</a>
             </li>
-          ))}
-        </ul>
-      </nav>
+            <li
+              className={this.state.active ? "page-item active" : "page-item"}
+              onClick={() => this.getActive()}
+            >
+              <a className="page-link">2</a>
+            </li>
+          </ul>
+        </nav>
+      </>
     );
   }
 }

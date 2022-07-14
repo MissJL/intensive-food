@@ -3,11 +3,20 @@ import Foods from "./Components/Foods";
 import { getFoods } from "../src/Services/fakeFoodService";
 import Pagination from "./Components/Pagination";
 import ListGroup from "./Components/ListGroup";
+import { getPages } from "./Services/Pages";
 
 class App extends Component {
   state = {
     foods: getFoods(),
-    pages: [1, 2, 3, 4, 5],
+    pages: getPages(),
+  };
+
+  handleActive = (nr) => {
+    const pages = [...this.state.pages];
+    const index = pages.indexOf(nr);
+    pages[index] = { ...nr };
+    pages[index].active = !this.state.pages.active;
+    this.setState({ pages });
   };
 
   handleDelete = (id) => {
@@ -23,13 +32,8 @@ class App extends Component {
             <ListGroup />
           </span>
           <div className="col">
-            <Foods
-              foods={this.state.foods}
-              onDelete={this.handleDelete}
-              onPage={this.handlePage}
-              onActive={this.getActive}
-            />
-            <Pagination pages={this.state.pages} />
+            <Foods foods={this.state.foods} onDelete={this.handleDelete} />
+            <Pagination pages={this.state.pages} onActive={this.handleActive} />
           </div>
         </div>
       </div>

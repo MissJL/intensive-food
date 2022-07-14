@@ -33,8 +33,7 @@ class Foods extends Component {
                   <td>{food.numberInStock}</td>
                   <td>{food.price}</td>
                   <td>
-                    {" "}
-                    <Favorite getActive={this.props.getActive} />
+                    <Favorite />
                   </td>
                   <td>
                     <button
