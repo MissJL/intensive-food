@@ -6,9 +6,9 @@ class Pagination extends Component {
       <>
         <nav>
           <ul className="pagination pagination-sm">
-            {this.state.pages.map((page) => (
+            {this.props.pages.map((page) => (
               <li
-                key={page.page}
+                key={page.pageNr}
                 className={page.active ? "page-item active" : "page-item"}
                 onClick={() => this.props.onActive(page)}
               >
