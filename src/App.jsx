@@ -13,6 +13,22 @@ class App extends Component {
     pages: getPages(),
   };
 
+  render() {
+    const { categories, foods, pages } = this.state;
+    return (
+      <div className="container mt-4" style={{ cursor: "pointer" }}>
+        <div className="row">
+          <span className="col-2">
+            <ListGroup categories={categories} onFilter={this.handleFilter} />
+          </span>
+          <div className="col">
+            <Foods foods={foods} onDelete={this.handleDelete} />
+            <Pagination pages={pages} onActive={this.handlePage} />
+          </div>
+        </div>
+      </div>
+    );
+  }
   handleDelete = (id) => {
     const foods = this.state.foods.filter((item) => item._id !== id);
     this.setState({ foods });
@@ -33,25 +49,6 @@ class App extends Component {
     newArray[index].isActive = true;
     this.setState({ categories: newArray });
   };
-
-  render() {
-    return (
-      <div className="container mt-4" style={{ cursor: "pointer" }}>
-        <div className="row">
-          <span className="col-2">
-            <ListGroup
-              categories={this.state.categories}
-              onFilter={this.handleFilter}
-            />
-          </span>
-          <div className="col">
-            <Foods foods={this.state.foods} onDelete={this.handleDelete} />
-            <Pagination pages={this.state.pages} onActive={this.handlePage} />
-          </div>
-        </div>
-      </div>
-    );
-  }
 }
 
 export default App;
