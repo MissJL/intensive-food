@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/intensive-food/static/css/main.23954b68.css",
-    "main.js": "/intensive-food/static/js/main.3d99b19e.js",
+    "main.js": "/intensive-food/static/js/main.329c3165.js",
     "static/media/fa-solid-900.ttf": "/intensive-food/static/media/fa-solid-900.e615bbcb258550973c16.ttf",
     "static/media/fa-brands-400.ttf": "/intensive-food/static/media/fa-brands-400.b823fc0dbb5a5f0c21bb.ttf",
     "static/media/fa-solid-900.woff2": "/intensive-food/static/media/fa-solid-900.59edf72a325ac2048d60.woff2",
@@ -12,10 +12,10 @@
     "static/media/fa-v4compatibility.woff2": "/intensive-food/static/media/fa-v4compatibility.afac89562a5301459069.woff2",
     "index.html": "/intensive-food/index.html",
     "main.23954b68.css.map": "/intensive-food/static/css/main.23954b68.css.map",
-    "main.3d99b19e.js.map": "/intensive-food/static/js/main.3d99b19e.js.map"
+    "main.329c3165.js.map": "/intensive-food/static/js/main.329c3165.js.map"
   },
   "entrypoints": [
     "static/css/main.23954b68.css",
-    "static/js/main.3d99b19e.js"
+    "static/js/main.329c3165.js"
   ]
 }
