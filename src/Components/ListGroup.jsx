@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class ListGroup extends Component {
   render() {
-    const { categories, onFilter } = this.props;
+    const { categories, onCategory } = this.props;
     return (
       <span>
         <ul className="list-group container-sm">
@@ -12,7 +12,7 @@ class ListGroup extends Component {
               className={
                 category.isActive ? "list-group-item active" : "list-group-item"
               }
-              onClick={() => onFilter(category)}
+              onClick={() => onCategory(category)}
             >
               {category.name}
             </li>

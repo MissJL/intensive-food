@@ -1,21 +1,18 @@
 import React, { Component } from "react";
-import "@fortawesome/fontawesome-free/css/all.css";
 
 class Favorite extends Component {
-  state = {
-    favorite: true,
-  };
-  getFavorite = () => {
-    const star = !this.state.favorite;
-    this.setState({ favorite: star });
-  };
+  getFavorite() {
+    let classes = "fa-star fa-";
+    classes += this.props.food.isFavorite ? "solid " : "regular";
+    return classes;
+  }
+
   render() {
     return (
       <i
-        className={
-          this.state.favorite ? "fa-regular fa-star" : "fa-solid fa-star"
-        }
-        onClick={() => this.getFavorite()}
+        className={this.getFavorite()}
+        style={{ cursor: "pointer" }}
+        onClick={() => this.props.onFavorite(this.props.food)}
       />
     );
   }

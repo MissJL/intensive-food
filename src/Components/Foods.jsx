@@ -10,10 +10,11 @@ class Foods extends Component {
   }
 
   render() {
+    const { foods, onDelete, onFavorite } = this.props;
     return (
       <>
-        <span>{this.foodInCart(this.props.foods)}</span>
-        {this.props.foods.length > 0 && (
+        <span>{this.foodInCart(foods)}</span>
+        {foods.length > 0 && (
           <table className="table">
             <thead>
               <tr>
@@ -26,18 +27,18 @@ class Foods extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.foods.map((food) => (
+              {foods.map((food) => (
                 <tr key={food._id}>
                   <td>{food.name}</td>
                   <td>{food.category.name}</td>
                   <td>{food.numberInStock}</td>
                   <td>{food.price}</td>
                   <td>
-                    <Favorite />
+                    <Favorite food={food} onFavorite={onFavorite} />
                   </td>
                   <td>
                     <button
-                      onClick={() => this.props.onDelete(food._id)}
+                      onClick={() => onDelete(food._id)}
                       type="button"
                       className="btn btn-danger"
                     >

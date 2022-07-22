@@ -16,13 +16,20 @@ class App extends Component {
   render() {
     const { categories, foods, pages } = this.state;
     return (
-      <div className="container mt-4" style={{ cursor: "pointer" }}>
+      <div className="container mt-4">
         <div className="row">
           <span className="col-2">
-            <ListGroup categories={categories} onFilter={this.handleFilter} />
+            <ListGroup
+              categories={categories}
+              onCategory={this.handleCategory}
+            />
           </span>
           <div className="col">
-            <Foods foods={foods} onDelete={this.handleDelete} />
+            <Foods
+              foods={foods}
+              onDelete={this.handleDelete}
+              onFavorite={this.handleFavorite}
+            />
             <Pagination pages={pages} onActive={this.handlePage} />
           </div>
         </div>
@@ -40,7 +47,7 @@ class App extends Component {
     this.setState({ pages });
   };
 
-  handleFilter = (category) => {
+  handleCategory = (category) => {
     const newArray = this.state.categories.map((c) => ({
       ...c,
       isActive: false,
@@ -48,6 +55,15 @@ class App extends Component {
     const index = this.state.categories.indexOf(category);
     newArray[index].isActive = true;
     this.setState({ categories: newArray });
+  };
+
+  handleFavorite = (food) => {
+    const newFoods = [...this.state.foods];
+    const index = newFoods.indexOf(food);
+    newFoods[index] = { ...food };
+    newFoods[index].isFavorite = !newFoods[index].isFavorite;
+    this.setState({ foods: newFoods });
+    console.log("klicked");
   };
 }
 
