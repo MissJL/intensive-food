@@ -8,11 +8,12 @@ class Favorite extends Component {
   }
 
   render() {
+    const { food, onFavorite } = this.props;
     return (
       <i
         className={this.getFavorite()}
         style={{ cursor: "pointer" }}
-        onClick={() => this.props.onFavorite(this.props.food)}
+        onClick={() => onFavorite(food)}
       />
     );
   }
