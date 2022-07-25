@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Foods from "./Components/Foods";
 import { getFoods } from "../src/Services/fakeFoodService";
-import Pagination from "./Components/Pagination";
-import ListGroup from "./Components/ListGroup";
+import Pagination from "./Components/Common/Pagination";
+import ListGroup from "./Components/Common/ListGroup";
 import { getCategories } from "./Services/fakeCategoryServices";
 import { getPages } from "./Services/pages";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Favorite from "./Favorite";
+import Favorite from "../Components/Common/Favorite";
 
 class Foods extends Component {
   foodInCart() {
