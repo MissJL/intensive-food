@@ -9,7 +9,10 @@ import { getPages } from "./Services/pages";
 class App extends Component {
   state = {
     foods: getFoods(),
-    categories: [{ name: "All Categories" }, ...getCategories()],
+    categories: [
+      { name: "All Categories", isActive: true },
+      ...getCategories(),
+    ],
     pages: getPages(),
   };
 
