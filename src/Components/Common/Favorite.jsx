@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 
 class Favorite extends Component {
-  getFavorite() {
-    let classes = "fa-star fa-";
-    classes += this.props.food.isFavorite ? "solid " : "regular";
-    return classes;
-  }
-
   render() {
-    const { food, onFavorite } = this.props;
+    let classes = "fa-star fa-";
+    classes += this.props.isFavorite ? "solid " : "regular";
+
     return (
       <i
-        className={this.getFavorite()}
+        className={classes}
         style={{ cursor: "pointer" }}
-        onClick={() => onFavorite(food)}
+        onClick={() => this.props.onFavorite(food)}
       />
     );
   }
