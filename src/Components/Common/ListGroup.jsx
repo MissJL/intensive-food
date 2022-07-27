@@ -1,22 +1,23 @@
 import React from "react";
 
-function ListGroup({ categories, onCategory }) {
+function ListGroup({ items, selectedItem, onItemSelect }) {
   return (
-    <span>
-      <ul className="list-group container-sm">
-        {categories.map((category) => (
-          <li
-            key={category.name}
-            className={
-              category.isActive ? "list-group-item active" : "list-group-item"
-            }
-            onClick={() => onCategory(category)}
-          >
-            {category.name}
-          </li>
-        ))}
-      </ul>
-    </span>
+    <ul className="list-group">
+      {items.map((item) => (
+        <li
+          key={item._id}
+          style={{ cursor: "pointer" }}
+          className={
+            item === selectedItem
+              ? "list-group-item active"
+              : "list-group-item "
+          }
+          onClick={() => onItemSelect(item)}
+        >
+          {item.name}
+        </li>
+      ))}
+    </ul>
   );
 }
 

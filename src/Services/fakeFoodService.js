@@ -4,14 +4,20 @@ const foods = [
   {
     _id: "5b21ca3eeb7f6fbccd471815",
     name: "Apple",
-    category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Fruit" },
+    category: {
+      _id: "5b21ca3eeb7f6fbccd471818",
+      name: "Fruit",
+    },
     numberInStock: 6,
     price: 10,
   },
   {
     _id: "5b21ca3eeb7f6fbccd471816",
     name: "Banana",
-    category: { _id: "5b21ca3eeb7f6fbccd471818", name: "Fruit" },
+    category: {
+      _id: "5b21ca3eeb7f6fbccd471818",
+      name: "Fruit",
+    },
     numberInStock: 5,
     price: 15,
   },
