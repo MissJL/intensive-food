@@ -87,7 +87,7 @@ class Foods extends Component {
             </table>
           )}
           <Pagination
-            itemCount={allFoods.length}
+            itemCount={filteredFoods.length}
             pageSize={pageSize}
             selectedPage={selectedPage}
             onPageChange={handlePageChange}
