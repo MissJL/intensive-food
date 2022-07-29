@@ -4,6 +4,7 @@ import ListGroup from "./Common/ListGroup";
 import Pagination from "./Common/Pagination";
 import { getFoods } from "../Services/fakeFoodService";
 import { getCategories } from "../Services/fakeCategoryServices";
+import { paginate } from "../Utils/Paginate";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All categories" };
 
@@ -11,10 +12,9 @@ class Foods extends Component {
   state = {
     foods: [],
     categories: [],
-    pageSize: 3,
+    pageSize: 4,
     selectedPage: 1,
     selectedCategory: DEFAULT_CATEGORY,
-    // filteredArray: [],
   };
 
   componentDidMount() {
@@ -23,10 +23,21 @@ class Foods extends Component {
   }
 
   render() {
-    const { foods, pageSize, selectedPage, categories, selectedCategory } =
-      this.state;
+    const {
+      foods: allFoods,
+      pageSize,
+      selectedPage,
+      categories,
+      selectedCategory,
+    } = this.state;
     const { handleDelete, handleFavorite, handlePageChange, handleItemSelect } =
       this;
+
+    const filteredFoods = selectedCategory._id
+      ? allFoods.filter((f) => f.category._id === selectedCategory._id)
+      : allFoods;
+
+    const foods = paginate(filteredFoods, selectedPage, pageSize);
 
     return (
       <div className="row">
@@ -76,7 +87,7 @@ class Foods extends Component {
             </table>
           )}
           <Pagination
-            itemCount={foods.length}
+            itemCount={allFoods.length}
             pageSize={pageSize}
             selectedPage={selectedPage}
             onPageChange={handlePageChange}
@@ -99,22 +110,10 @@ class Foods extends Component {
     this.setState({ foods });
   };
 
-  // handleCategory = (category) => {
-  //   const newArray = this.state.foods.map((c) => ({
-  //     ...c,
-  //     isActive: false,
-  //   }));
-  //   // const index = this.state.foods.indexOf(category);
-  //   // newArray[index].isActive = true;
-  //   const filtered = newArray.filter((food) => {
-  //     return food.category._id === category._id || newArray;
-  //   });
-  //   this.setState({ filteredArray: filtered });
-  // };
-
   handlePageChange = (page) => this.setState({ selectedPage: page });
 
-  handleItemSelect = (item) => this.setState({ selectedCategory: item });
+  handleItemSelect = (item) =>
+    this.setState({ selectedCategory: item, selectedPage: 1 });
 
   foodInCart() {
     const inCart = this.state.foods.length;
