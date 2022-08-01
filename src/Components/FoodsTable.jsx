@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import TableBody from "./Common/TableBody";
-import TableHeader from "./Common/TableHeader";
+import Table from "./Common/Table";
 import Favorite from "./Common/Favorite";
 
 class FoodsTable extends Component {
@@ -33,16 +32,14 @@ class FoodsTable extends Component {
   ];
 
   render() {
-    const { foods, onSort, sortColumn } = this.props;
+    const { onSort, foods, sortColumn } = this.props;
     return (
-      <table className="table">
-        <TableHeader
-          columns={this.columns}
-          onSort={onSort}
-          sortColumn={sortColumn}
-        />
-        <TableBody data={foods} columns={this.columns} />
-      </table>
+      <Table
+        data={foods}
+        columns={this.columns}
+        sortColumn={sortColumn}
+        onSort={onSort}
+      />
     );
   }
 }
