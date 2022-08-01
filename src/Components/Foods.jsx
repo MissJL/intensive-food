@@ -44,6 +44,30 @@ class Foods extends Component {
 
   handleSort = (sortColumn) => this.setState({ sortColumn });
 
+  getPaginatedFoods() {
+    const {
+      foods: allFoods,
+      pageSize,
+      selectedPage,
+      selectedCategory,
+      sortColumn,
+    } = this.state;
+
+    const filteredFoods = selectedCategory._id
+      ? allFoods.filter((f) => f.category._id === selectedCategory._id)
+      : allFoods;
+
+    const sortedFoods = _.orderBy(
+      filteredFoods,
+      [sortColumn.path],
+      [sortColumn.order]
+    );
+
+    const foods = paginate(sortedFoods, selectedPage, pageSize);
+
+    return { foods, filteredCount: filteredFoods.length };
+  }
+
   render() {
     const {
       foods: allFoods,
@@ -61,17 +85,7 @@ class Foods extends Component {
       handleSort,
     } = this;
 
-    const filteredFoods = selectedCategory._id
-      ? allFoods.filter((f) => f.category._id === selectedCategory._id)
-      : allFoods;
-
-    const sortedFoods = _.orderBy(
-      filteredFoods,
-      [sortColumn.path],
-      [sortColumn.order]
-    );
-
-    const foods = paginate(sortedFoods, selectedPage, pageSize);
+    const { foods, filteredCount } = this.getPaginatedFoods();
 
     return (
       <div className="row">
@@ -83,8 +97,8 @@ class Foods extends Component {
           />
         </div>
         <div className="col">
-          <p>Showing {filteredFoods.length} foods in the database</p>
-          {filteredFoods.length > 0 && (
+          <p>Showing {filteredCount} foods in the database</p>
+          {filteredCount > 0 && (
             <FoodsTable
               foods={foods}
               sortColumn={sortColumn}
@@ -94,7 +108,7 @@ class Foods extends Component {
             />
           )}
           <Pagination
-            itemCount={filteredFoods.length}
+            itemCount={filteredCount}
             pageSize={pageSize}
             selectedPage={selectedPage}
             onPageChange={handlePageChange}
