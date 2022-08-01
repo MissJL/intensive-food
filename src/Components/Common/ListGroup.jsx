@@ -1,6 +1,6 @@
 import React from "react";
 
-function ListGroup({ items, selectedItem, onItemSelect, OnFilterCategory }) {
+function ListGroup({ items, selectedItem, onItemSelect }) {
   return (
     <ul className="list-group">
       {items.map((item) => (
