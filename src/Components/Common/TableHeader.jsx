@@ -17,7 +17,7 @@ class TableHeader extends Component {
     if (sortColumn.path !== column.path) return null;
     if (sortColumn.order === "asc")
       return <i className="fa-solid fa-sort-down"></i>;
-    return <i class="fa-solid fa-sort-up"></i>;
+    return <i className="fa-solid fa-sort-up"></i>;
   }
 
   render() {
