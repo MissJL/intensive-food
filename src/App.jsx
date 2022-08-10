@@ -6,6 +6,8 @@ import Customers from "./Components/Customers";
 import Orders from "./Components/Orders";
 import NotFound from "./Components/Common/NotFound";
 import FoodForm from "./Components/FoodForm";
+import LoginForm from "./Components/LoginForm";
+import RegisterForm from "./Components/RegisterForm";
 
 class App extends Component {
   render() {
@@ -18,9 +20,11 @@ class App extends Component {
             <Route path="/foods" component={Foods} />
             <Route path="/customers" component={Customers} />
             <Route path="/orders" component={Orders} />
-            <Route exact path="/" component={Foods} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
             <Route path="/notfound" component={NotFound} />
-            <Redirect to="/notfound" />
+            <Route exact path="/" component={Foods} />
+            <Redirect to="/foods" />
           </Switch>
         </div>
       </div>

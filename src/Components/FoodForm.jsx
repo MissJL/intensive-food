@@ -16,5 +16,4 @@ class FoodForm extends Component {
     );
   }
 }
-console.log(this.props.match.params._id);
 export default FoodForm;

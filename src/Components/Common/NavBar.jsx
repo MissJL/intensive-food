@@ -7,6 +7,8 @@ class NavBar extends Component {
       { label: "Foods", path: "/foods" },
       { label: "Customers", path: "/customers" },
       { label: "Orders", path: "/orders" },
+      { label: "Login", path: "/login" },
+      { label: "Register", path: "/register" },
     ],
   };
   render() {
