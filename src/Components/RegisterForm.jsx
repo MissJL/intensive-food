@@ -14,7 +14,7 @@ class RegisterForm extends Form {
       .min(2)
       .email({ tlds: { allow: false } })
       .required()
-      .label("Email"),
+      .label("Username"),
     password: Joi.string().min(5).required().label("Password"),
     name: Joi.string().allow("").label("Name"),
   });
