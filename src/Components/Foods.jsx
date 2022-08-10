@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 import ListGroup from "./Common/ListGroup";
 import Pagination from "./Common/Pagination";
 import { getFoods } from "../Services/fakeFoodService";
@@ -52,7 +53,7 @@ class Foods extends Component {
       selectedCategory,
       sortColumn,
     } = this.state;
-
+    console.log(allFoods, selectedCategory);
     const filteredFoods = selectedCategory._id
       ? allFoods.filter((f) => f.category._id === selectedCategory._id)
       : allFoods;
@@ -88,7 +89,7 @@ class Foods extends Component {
     const { foods, filteredCount } = this.getPaginatedFoods();
 
     return (
-      <div className="row">
+      <div className="row mt-4">
         <div className="col-2 ">
           <ListGroup
             items={categories}
@@ -97,7 +98,10 @@ class Foods extends Component {
           />
         </div>
         <div className="col">
-          <p>Showing {filteredCount} foods in the database</p>
+          <Link to="/foods/new" className="btn btn-primary mb-3">
+            New Food
+          </Link>
+          <p>Showing {filteredCount} foods in the database.</p>
           {filteredCount > 0 && (
             <FoodsTable
               foods={foods}

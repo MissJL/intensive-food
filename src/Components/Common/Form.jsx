@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Input from "./Input";
+import Select from "./Select";
 //abstrakt komponent som inte har render funktion = detta blir en mall till andra specifika form
 
 class Form extends Component {
@@ -58,6 +59,20 @@ class Form extends Component {
       <button className="btn btn-primary" disabled={this.validate()}>
         {label}
       </button>
+    );
+  }
+
+  renderSelect(name, label, selections) {
+    const { data, errors } = this.state;
+    return (
+      <Select
+        name={name}
+        label={label}
+        value={data[name]}
+        error={errors[name]}
+        onChange={this.handleChange}
+        selections={selections}
+      />
     );
   }
 
