@@ -4,11 +4,12 @@ import Form from "./Common/Form";
 import { getCategories } from "../Services/fakeCategoryServices";
 import { saveFood, getFood } from "../Services/fakeFoodService";
 
-class NewFood extends Form {
+class EditFood extends Form {
   state = {
     data: { name: "", categoryId: "", numberInStock: "", price: "" },
     errors: {},
     categories: getCategories(),
+    getFood: getFood(),
   };
 
   schema = Joi.object({
@@ -31,20 +32,21 @@ class NewFood extends Form {
   };
 
   render() {
-    console.log(this.state.data);
     return (
-      <div className="container mt-4">
-        <h1>Food Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderInput("name", "Name")}
-          {this.renderSelect("categoryId", "Categories", this.state.categories)}
-          {this.renderInput("numberInStock", "Number in Stock")}
-          {this.renderInput("price", "Price")}
-          {this.renderButton("Save")}
-        </form>
+      <div>
+        <div className="container mt-4">
+          <h1>Food Form</h1>
+          <form onSubmit={this.handleSubmit}>
+            {this.renderInput("name", "Name")}
+            {this.renderSelect("categoryId", "Category", this.state.categories)}
+            {this.renderInput("numberInStock", "Number in Stock")}
+            {this.renderInput("price", "Price")}
+            {this.renderButton("Save")}
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-export default NewFood;
+export default EditFood;

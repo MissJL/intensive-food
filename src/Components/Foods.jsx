@@ -7,6 +7,7 @@ import { getFoods } from "../Services/fakeFoodService";
 import { getCategories } from "../Services/fakeCategoryServices";
 import { paginate } from "../Utils/Paginate";
 import FoodsTable from "./FoodsTable";
+import SearchBox from "./Common/SearchBox";
 
 const DEFAULT_CATEGORY = { _id: "", name: "All categories" };
 
@@ -17,6 +18,7 @@ class Foods extends Component {
     pageSize: 4,
     selectedPage: 1,
     selectedCategory: DEFAULT_CATEGORY,
+    search: "",
     sortColumn: { path: "name", order: "asc" },
   };
 
@@ -44,6 +46,10 @@ class Foods extends Component {
     this.setState({ selectedCategory: item, selectedPage: 1 });
 
   handleSort = (sortColumn) => this.setState({ sortColumn });
+
+  handleSearch = (search) => {
+    this.setState({ search, selectedCategory: null, selectedPage: 1 });
+  };
 
   getPaginatedFoods() {
     const {
@@ -102,6 +108,7 @@ class Foods extends Component {
             New Food
           </Link>
           <p>Showing {filteredCount} foods in the database.</p>
+          <SearchBox />
           {filteredCount > 0 && (
             <FoodsTable
               foods={foods}

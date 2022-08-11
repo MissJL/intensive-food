@@ -8,7 +8,7 @@ import NotFound from "./Components/Common/NotFound";
 import FoodForm from "./Components/FoodForm";
 import LoginForm from "./Components/LoginForm";
 import RegisterForm from "./Components/RegisterForm";
-import NewFood from "./Components/NewFood";
+import EditFood from "./Components/EditFood";
 
 class App extends Component {
   render() {
@@ -17,8 +17,8 @@ class App extends Component {
         <div className="row">
           <NavBar />
           <Switch>
-            <Route path="/foods/new" component={NewFood} />
-            <Route path="/foods/:_id" component={FoodForm} />
+            <Route path="/foods/:id" component={EditFood} />
+            <Route path="/foods/new" component={FoodForm} />
             <Route path="/foods" component={Foods} />
             <Route path="/customers" component={Customers} />
             <Route path="/orders" component={Orders} />
