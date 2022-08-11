@@ -3,6 +3,7 @@ import Joi from "joi";
 import Form from "./Common/Form";
 import { getCategories } from "../Services/fakeCategoryServices";
 import { saveFood, getFood } from "../Services/fakeFoodService";
+import Foods from "./Foods";
 
 class EditFood extends Form {
   state = {
@@ -32,6 +33,7 @@ class EditFood extends Form {
   };
 
   render() {
+    console.log(getFood);
     return (
       <div>
         <div className="container mt-4">

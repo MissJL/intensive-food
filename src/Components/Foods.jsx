@@ -58,11 +58,19 @@ class Foods extends Component {
       selectedPage,
       selectedCategory,
       sortColumn,
+      search,
     } = this.state;
     console.log(allFoods, selectedCategory);
-    const filteredFoods = selectedCategory._id
-      ? allFoods.filter((f) => f.category._id === selectedCategory._id)
-      : allFoods;
+
+    let filteredFoods = allFoods;
+    if (search)
+      filteredFoods = allFoods.filter((f) =>
+        f.name.toLowerCase().startsWith(search.toLowerCase())
+      );
+    else if (selectedCategory && selectedCategory._id)
+      filteredFoods = allFoods.filter(
+        (f) => f.category._id === selectedCategory._id
+      );
 
     const sortedFoods = _.orderBy(
       filteredFoods,
@@ -83,6 +91,7 @@ class Foods extends Component {
       categories,
       selectedCategory,
       sortColumn,
+      search,
     } = this.state;
     const {
       handleDelete,
@@ -90,6 +99,7 @@ class Foods extends Component {
       handlePageChange,
       handleItemSelect,
       handleSort,
+      handleSearch,
     } = this;
 
     const { foods, filteredCount } = this.getPaginatedFoods();
@@ -108,7 +118,7 @@ class Foods extends Component {
             New Food
           </Link>
           <p>Showing {filteredCount} foods in the database.</p>
-          <SearchBox />
+          <SearchBox value={search} onChange={handleSearch} />
           {filteredCount > 0 && (
             <FoodsTable
               foods={foods}
