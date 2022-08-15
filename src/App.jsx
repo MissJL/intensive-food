@@ -5,7 +5,6 @@ import Foods from "./Components/Foods";
 import Customers from "./Components/Customers";
 import Orders from "./Components/Orders";
 import NotFound from "./Components/Common/NotFound";
-import FoodForm from "./Components/FoodForm";
 import LoginForm from "./Components/LoginForm";
 import RegisterForm from "./Components/RegisterForm";
 import EditFood from "./Components/EditFood";
@@ -17,8 +16,8 @@ class App extends Component {
         <div className="row">
           <NavBar />
           <Switch>
-            <Route path="/foods/:id" component={EditFood} />
-            <Route path="/foods/new" component={FoodForm} />
+            <Route path="/foods/:_id" component={EditFood} />
+            <Route path="/foods/new" component={EditFood} />
             <Route path="/foods" component={Foods} />
             <Route path="/customers" component={Customers} />
             <Route path="/orders" component={Orders} />
@@ -26,7 +25,7 @@ class App extends Component {
             <Route path="/register" component={RegisterForm} />
             <Route path="/notfound" component={NotFound} />
             <Route exact path="/" component={Foods} />
-            <Redirect to="/foods" />
+            <Redirect to="/notfound" />
           </Switch>
         </div>
       </div>

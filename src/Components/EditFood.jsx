@@ -3,14 +3,12 @@ import Joi from "joi";
 import Form from "./Common/Form";
 import { getCategories } from "../Services/fakeCategoryServices";
 import { saveFood, getFood } from "../Services/fakeFoodService";
-import Foods from "./Foods";
 
 class EditFood extends Form {
   state = {
     data: { name: "", categoryId: "", numberInStock: "", price: "" },
     errors: {},
-    categories: getCategories(),
-    getFood: getFood(),
+    categories: [],
   };
 
   schema = Joi.object({
@@ -25,6 +23,29 @@ class EditFood extends Form {
     price: Joi.number().min(0).max(10).required().label("Price"),
   });
 
+  componentDidMount() {
+    const categories = getCategories();
+    this.setState({ categories });
+
+    const foodId = this.props.match.params._id;
+    if (foodId === "new") return;
+
+    const food = getFood(foodId);
+    if (!food) return this.props.history.replace("/notfound");
+
+    this.setState({ data: this.mapToViewModel(food) });
+  }
+
+  mapToViewModel(food) {
+    return {
+      _id: food._id,
+      name: food.name,
+      categoryId: food.category._id,
+      numberInStock: food.numberInStock,
+      price: food.price,
+    };
+  }
+
   doSubmit = () => {
     saveFood(this.state.data);
 
@@ -33,7 +54,6 @@ class EditFood extends Form {
   };
 
   render() {
-    console.log(getFood);
     return (
       <div>
         <div className="container mt-4">

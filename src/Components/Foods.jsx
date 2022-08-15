@@ -3,7 +3,7 @@ import _ from "lodash";
 import { Link } from "react-router-dom";
 import ListGroup from "./Common/ListGroup";
 import Pagination from "./Common/Pagination";
-import { getFoods } from "../Services/fakeFoodService";
+import { getFoods, deleteFood } from "../Services/fakeFoodService";
 import { getCategories } from "../Services/fakeCategoryServices";
 import { paginate } from "../Utils/Paginate";
 import FoodsTable from "./FoodsTable";
@@ -36,14 +36,14 @@ class Foods extends Component {
   };
 
   handleDelete = (id) => {
-    const foods = this.state.foods.filter((food) => food._id !== id);
-    this.setState({ foods });
+    const foods = deleteFood(id);
+    this.setState(foods);
   };
 
   handlePageChange = (page) => this.setState({ selectedPage: page });
 
   handleItemSelect = (item) =>
-    this.setState({ selectedCategory: item, selectedPage: 1 });
+    this.setState({ selectedCategory: item, selectedPage: 1, search: "" });
 
   handleSort = (sortColumn) => this.setState({ sortColumn });
 
