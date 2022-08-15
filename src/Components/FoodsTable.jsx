@@ -9,6 +9,7 @@ class FoodsTable extends Component {
     {
       label: "Name",
       key: "Link",
+      path: "name",
       content: (food) => (
         <Link to={`/foods/${food._id}`} onClick={() => getFood(food)}>
           {food.name}

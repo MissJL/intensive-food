@@ -11,6 +11,7 @@ class TableHeader extends Component {
     }
     console.log(sortColumn.path);
     this.props.onSort(sortColumn); //raise event för att uppdatera state:t högre upp
+    console.log(sortColumn);
   };
 
   renderSortIcon(column) {
