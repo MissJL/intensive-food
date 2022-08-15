@@ -13,13 +13,9 @@ class EditFood extends Form {
 
   schema = Joi.object({
     _id: Joi.string(),
-    name: Joi.string().required(),
-    categoryId: Joi.string().required(),
-    numberInStock: Joi.number()
-      .min(0)
-      .max(100)
-      .required()
-      .label("Number in Stock"),
+    name: Joi.string().required().label("Name"),
+    categoryId: Joi.string().required().label("Category"),
+    numberInStock: Joi.number().min(0).max(100).required().label("Stock"),
     price: Joi.number().min(0).max(10).required().label("Price"),
   });
 

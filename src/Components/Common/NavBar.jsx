@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {
@@ -15,7 +15,9 @@ class NavBar extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <span className="container-fluid">
-          <a className="navbar-brand">Intensive Foods</a>
+          <Link className="navbar-brand" to="/">
+            Intensive Foods
+          </Link>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               {this.state.titles.map((title) => (

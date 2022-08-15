@@ -7,7 +7,7 @@ import Orders from "./Components/Orders";
 import NotFound from "./Components/Common/NotFound";
 import LoginForm from "./Components/LoginForm";
 import RegisterForm from "./Components/RegisterForm";
-import EditFood from "./Components/EditFood";
+import FoodForm from "./Components/FoodForm";
 
 class App extends Component {
   render() {
@@ -16,15 +16,15 @@ class App extends Component {
         <div className="row">
           <NavBar />
           <Switch>
-            <Route path="/foods/:_id" component={EditFood} />
-            <Route path="/foods/new" component={EditFood} />
+            <Route path="/foods/:_id" component={FoodForm} />
+            <Route path="/foods/new" component={FoodForm} />
             <Route path="/foods" component={Foods} />
             <Route path="/customers" component={Customers} />
             <Route path="/orders" component={Orders} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/notfound" component={NotFound} />
-            <Route exact path="/" component={Foods} />
+            <Redirect exact from="/" to="/foods" />
             <Redirect to="/notfound" />
           </Switch>
         </div>

@@ -35,9 +35,10 @@ class Foods extends Component {
     this.setState({ foods: newFoods });
   };
 
-  handleDelete = (id) => {
-    const foods = deleteFood(id);
+  handleDelete = (food) => {
+    const foods = this.state.foods.filter((f) => f._id !== food._id);
     this.setState(foods);
+    deleteFood(food);
   };
 
   handlePageChange = (page) => this.setState({ selectedPage: page });
@@ -48,7 +49,11 @@ class Foods extends Component {
   handleSort = (sortColumn) => this.setState({ sortColumn });
 
   handleSearch = (search) => {
-    this.setState({ search, selectedCategory: null, selectedPage: 1 });
+    this.setState({
+      search,
+      selectedCategory: DEFAULT_CATEGORY,
+      selectedPage: 1,
+    });
   };
 
   getPaginatedFoods() {
@@ -65,9 +70,9 @@ class Foods extends Component {
     let filteredFoods = allFoods;
     if (search)
       filteredFoods = allFoods.filter((f) =>
-        f.name.toLowerCase().startsWith(search.toLowerCase())
+        f.name.toLowerCase().includes(search.toLowerCase())
       );
-    else if (selectedCategory && selectedCategory._id)
+    else if (selectedCategory._id)
       filteredFoods = allFoods.filter(
         (f) => f.category._id === selectedCategory._id
       );
