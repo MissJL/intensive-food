@@ -8,11 +8,13 @@ import NotFound from "./Components/Common/NotFound";
 import LoginForm from "./Components/LoginForm";
 import RegisterForm from "./Components/RegisterForm";
 import FoodForm from "./Components/FoodForm";
+import { ToastContainer } from "react-toastify";
 
 class App extends Component {
   render() {
     return (
       <div className="container mt-4">
+        <ToastContainer />
         <div className="row">
           <NavBar />
           <Switch>

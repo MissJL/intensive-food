@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Table from "./Common/Table";
 import Favorite from "./Common/Favorite";
 import { Link } from "react-router-dom";
-import { getFood } from "../Services/fakeFoodService";
+import { getFood } from "../Services/foodService";
 
 class FoodsTable extends Component {
   columns = [
