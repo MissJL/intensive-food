@@ -9,6 +9,8 @@ class NavBar extends Component {
       { label: "Orders", path: "/orders" },
       { label: "Login", path: "/login" },
       { label: "Register", path: "/register" },
+      { label: "Profile", path: "/profile" },
+      { label: "Logout", path: "/logout" },
     ],
   };
   render() {
@@ -19,13 +21,37 @@ class NavBar extends Component {
             Intensive Foods
           </Link>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              {this.state.titles.map((title) => (
-                <NavLink to={title.path} key={title.label} className="nav-link">
-                  {title.label}
-                </NavLink>
-              ))}
-            </ul>
+            <div className="navbar-nav">
+              <NavLink className="nav-link" to="/foods">
+                Foods
+              </NavLink>
+              <NavLink className="nav-link" to="/customers">
+                Customers
+              </NavLink>
+              <NavLink className="nav-link" to="/orders">
+                Orders
+              </NavLink>
+              {!this.props.user && (
+                <>
+                  <NavLink className="nav-link" to="/login">
+                    Login
+                  </NavLink>
+                  <NavLink className="nav-link" to="/register">
+                    Register
+                  </NavLink>
+                </>
+              )}
+              {this.props.user && (
+                <>
+                  <NavLink className="nav-link" to="/profile">
+                    {this.props.user.name}
+                  </NavLink>
+                  <NavLink className="nav-link" to="/logout">
+                    Logout
+                  </NavLink>
+                </>
+              )}
+            </div>
           </div>
         </span>
       </nav>
@@ -34,3 +60,9 @@ class NavBar extends Component {
 }
 
 export default NavBar;
+
+// {this.state.titles.map((title) => (
+//   <NavLink to={title.path} key={title.label} className="nav-link">
+//     {title.label}
+//   </NavLink>
+// ))}

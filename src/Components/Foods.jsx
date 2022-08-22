@@ -31,7 +31,6 @@ class Foods extends Component {
     const { data: foods } = await getFoods();
 
     this.setState({ foods, categories });
-    console.log("foods", foods);
   }
 
   handleFavorite = (food) => {
@@ -137,9 +136,11 @@ class Foods extends Component {
           />
         </div>
         <div className="col">
-          <Link to="/foods/new" className="btn btn-primary mb-3">
-            New Food
-          </Link>
+          {this.props.user?.isAdmin && (
+            <Link to="/foods/new" className="btn btn-primary mb-3">
+              New Food
+            </Link>
+          )}
           <p>Showing {filteredCount} foods in the database.</p>
           <SearchBox value={search} onChange={handleSearch} />
           {filteredCount > 0 && (

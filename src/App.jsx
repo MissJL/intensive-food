@@ -6,23 +6,39 @@ import Customers from "./Components/Customers";
 import Orders from "./Components/Orders";
 import NotFound from "./Components/Common/NotFound";
 import LoginForm from "./Components/LoginForm";
+import Logout from "./Components/Logout";
 import RegisterForm from "./Components/RegisterForm";
 import FoodForm from "./Components/FoodForm";
 import { ToastContainer } from "react-toastify";
+import auth from "./Services/authService";
+import ProtectedRoute from "./Components/Common/ProtectedRoute";
 
 class App extends Component {
+  state = {
+    user: null,
+  };
+
+  componentDidMount() {
+    this.setState({ user: auth.getCurrentUser() });
+  }
+
   render() {
+    const { user } = this.state;
     return (
       <div className="container mt-4">
         <ToastContainer />
         <div className="row">
-          <NavBar />
+          <NavBar user={user} />
           <Switch>
-            <Route path="/foods/:_id" component={FoodForm} />
-            <Route path="/foods/new" component={FoodForm} />
-            <Route path="/foods" component={Foods} />
+            <ProtectedRoute path="/foods/:_id" component={FoodForm} />
+            <ProtectedRoute path="/foods/new" component={FoodForm} />
+            <Route
+              path="/foods"
+              render={(props) => <Foods user={user} {...props} />}
+            />
             <Route path="/customers" component={Customers} />
             <Route path="/orders" component={Orders} />
+            <Route path="/logout" component={Logout} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             <Route path="/notfound" component={NotFound} />
