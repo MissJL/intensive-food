@@ -125,6 +125,7 @@ class Foods extends Component {
     } = this;
 
     const { foods, filteredCount } = this.getPaginatedFoods();
+    const user = this.props;
 
     return (
       <div className="row mt-4">
@@ -136,7 +137,7 @@ class Foods extends Component {
           />
         </div>
         <div className="col">
-          {this.props.user?.isAdmin && (
+          {user?.isAdmin && (
             <Link to="/foods/new" className="btn btn-primary mb-3">
               New Food
             </Link>
@@ -150,7 +151,7 @@ class Foods extends Component {
               onDelete={handleDelete}
               onFavorite={handleFavorite}
               onSort={handleSort}
-              user={this.props.user}
+              user={user}
             />
           )}
           <Pagination
