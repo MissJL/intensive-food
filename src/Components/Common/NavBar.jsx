@@ -3,13 +3,18 @@ import { NavLink, Link } from "react-router-dom";
 
 class NavBar extends Component {
   titles = [
-    { label: "Foods", path: "/foods", auth: true, out: true },
-    { label: "Customers", path: "/customers", auth: true, out: true },
-    { label: "Orders", path: "/orders", auth: true, out: true },
-    { label: "Login", path: "/login", auth: false, out: true },
-    { label: "Register", path: "/register", auth: false, out: true },
-    { label: [this.props.user.name], path: "/profile", auth: true, out: false },
-    { label: "Logout", path: "/logout", auth: true, out: false },
+    { label: "Foods", path: "/foods", auth: true, noneAuth: true },
+    { label: "Customers", path: "/customers", auth: true, noneAuth: true },
+    { label: "Orders", path: "/orders", auth: true, noneAuth: true },
+    { label: "Login", path: "/login", auth: false, noneAuth: true },
+    { label: "Register", path: "/register", auth: false, noneAuth: true },
+    {
+      label: "LoggedIn",
+      path: "/profile",
+      auth: true,
+      noneAuth: false,
+    },
+    { label: "Logout", path: "/logout", auth: true, noneAuth: false },
   ];
 
   render() {
@@ -17,7 +22,7 @@ class NavBar extends Component {
       (title) => title.auth === true
     );
     const filteredTitleWithOut = this.titles.filter(
-      (title) => title.out === true
+      (title) => title.noneAuth === true
     );
 
     return (

@@ -125,7 +125,7 @@ class Foods extends Component {
     } = this;
 
     const { foods, filteredCount } = this.getPaginatedFoods();
-    const user = this.props;
+    const { user } = this.props;
 
     return (
       <div className="row mt-4">
