@@ -9,10 +9,11 @@ class NavBar extends Component {
       { label: "Orders", path: "/orders" },
       { label: "Login", path: "/login" },
       { label: "Register", path: "/register" },
-      { label: "Profile", path: "/profile" },
-      { label: "Logout", path: "/logout" },
+      { label: "Profile", path: "/profile", auth: true },
+      { label: "Logout", path: "/logout", auth: true },
     ],
   };
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -62,7 +63,9 @@ class NavBar extends Component {
 export default NavBar;
 
 // {this.state.titles.map((title) => (
-//   <NavLink to={title.path} key={title.label} className="nav-link">
-//     {title.label}
-//   </NavLink>
+// {title.auth ? this.props.user && <NavLink to={title.path} key={title.label} className="nav-link">
+//      {title.label}
+//   </NavLink> : <NavLink to={title.path} key={title.label} className="nav-link">
+//      {title.label}
+//   </NavLink>}
 // ))}

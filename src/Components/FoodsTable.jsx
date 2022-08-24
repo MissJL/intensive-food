@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Table from "./Common/Table";
 import Favorite from "./Common/Favorite";
 import { Link } from "react-router-dom";
-import { getFood } from "../Services/foodService";
 
 class FoodsTable extends Component {
   columns = [
@@ -10,11 +9,7 @@ class FoodsTable extends Component {
       label: "Name",
       key: "Link",
       path: "name",
-      content: (food) => (
-        <Link to={`/foods/${food._id}`} onClick={() => getFood(food)}>
-          {food.name}
-        </Link>
-      ),
+      content: (food) => <Link to={`/foods/${food._id}`}>{food.name}</Link>,
     },
     { label: "Category", path: "category.name" },
     { label: "Stock", path: "numberInStock" },
@@ -30,15 +25,17 @@ class FoodsTable extends Component {
     },
     {
       key: "Delete",
-      content: (food) => (
-        <button
-          onClick={() => this.props.onDelete(food._id)}
-          type="button"
-          className="btn btn-danger"
-        >
-          Delete
-        </button>
-      ),
+      content:
+        this.props.user?.isAdmin &&
+        ((food) => (
+          <button
+            onClick={() => this.props.onDelete(food)}
+            type="button"
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+        )),
     },
   ];
 

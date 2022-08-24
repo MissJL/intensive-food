@@ -46,7 +46,7 @@ class Foods extends Component {
 
     const foods = originalFoods.filter((f) => f._id !== food._id);
     this.setState({ foods });
-
+    console.log("food", food);
     try {
       await deleteFood(food._id);
     } catch (error) {
@@ -150,6 +150,7 @@ class Foods extends Component {
               onDelete={handleDelete}
               onFavorite={handleFavorite}
               onSort={handleSort}
+              user={this.props.user}
             />
           )}
           <Pagination

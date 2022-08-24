@@ -21,7 +21,7 @@ export function saveFood(food) {
     const originalFood = { ...food };
     delete originalFood._id;
     return http.put(
-      " http://localhost:8000/api/foods/" + food._id,
+      "http://localhost:8000/api/foods/" + food._id,
       originalFood
     );
   }
